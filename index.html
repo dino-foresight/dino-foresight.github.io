@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="DINO-Foresight: Looking into the Future with DINO">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <!-- <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"> -->
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="World Models, Future Feature Prediction, Foundation Models, Masked Feature Transformers, Self-supervised learning, Multi-task Learning">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Efstathios Karypidis, Ioannis Kakogeorgiou, Spyros Gidaris, Nikos Komodakis">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  
+  <!-- Open Graph / Facebook -->
+  <!-- <meta property="og:type" content="article"> -->
+  <!-- TODO: Replace with your institution or lab name -->
+  <!-- <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME"> -->
+  <!-- TODO: Same as paper title above -->
+  <!-- <meta property="og:title" content="DINO-Foresight: Looking into the Future with DINO"> -->
+  <!-- TODO: Same as description above -->
+  <!-- <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"> -->
+  <!-- TODO: Replace with your actual website URL -->
+  <!-- <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"> -->
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <!-- <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2"> -->
+
+  <!-- Twitter -->
+  <!-- <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <!-- <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE"> -->
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <!-- <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE"> -->
+  <!-- TODO: Same as paper title above -->
+  <!-- <meta name="twitter:title" content="PAPER_TITLE"> -->
+  <!-- TODO: Same as description above -->
+  <!-- <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"> -->
+  <!-- TODO: Same as social preview image above -->
+  <!-- <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png"> -->
+  <!-- <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview"> -->
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="DINO-Foresight: Looking into the Future with DINO">
+  <meta name="citation_author" content="Karypidis, Efstathios">
+  <meta name="citation_author" content="Kakogeorgiou, Ioannis">
+  <meta name="citation_author" content="Gidaris, Spyros">
+  <meta name="citation_author" content="Komodakis, Nikos">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="NeurIPS">
+  <meta name="citation_pdf_url" content="https://openreview.net/forum?id=gimtybo07H">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>DINO-Foresight: Looking into the Future with DINO</title>
+  
+  <!-- Favicon and App Icons -->
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+  <!-- <link rel="apple-touch-icon" href="static/images/favicon.ico"> -->
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Add MathJax for LaTeX rendering -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- TODO: Replace with your paper title -->
+            <h1 class="title is-1 publication-title">DINO-Foresight: Looking into the Future with DINO</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: Replace with your paper authors and their personal links -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=jif2JYsAAAAJ&hl=en" target="_blank">Efstathios Karypidis</a><sup>1,3</sup>,</span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=B_dKcz4AAAAJ&hl=en" target="_blank">Ioannis Kakogeorgiou</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://scholar.google.fr/citations?user=7atfg7EAAAAJ&hl=en" target="_blank">Spyros Gidaris</a><sup>2</sup>,</span>
+                  </span>
+                    <span class="author-block">
+                          <a href="https://scholar.google.com/citations?user=xCPoT4EAAAAJ&hl=en" target="_blank">Nikos Komodakis</a><sup>1,4,5</sup>
+                        </span>
+                  </div>
+
+                  <div class="is-size-6 publication-authors">
+                    <span>1. Archimedes/Athena RC</span> | 
+                    <span>2. valeo.ai</span> | 
+                    <span>3. National Technical University of Athens</span> | 
+                    <span>4. University of Crete</span> | 
+                    <span>5. IACM-Forth</span>
+                  </div>
+                  <div class="is-size-5 publication-authors">
+                    <!-- TODO: Replace with your institution and conference/journal info -->
+                    <span class="author-block">NeurIPS 2025</span>
+                  </div>
+
+                   <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Neurips 25 OpenReview -->
+                      <span class="link-block">
+                        <a href="https://openreview.net/pdf?id=gimtybo07H" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                        </a>
+                      </span>
+                <!-- TODO: Update with your arXiv paper ID -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2412.11673" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+          
+
+              <!-- TODO: Replace with your GitHub repository URL -->
+              <span class="link-block">
+                <a href="https://github.com/Sta8is/DINO-Foresight" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+
+            <span class="link-block">
+              <a href="https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/dinof_highres.ckpt" target="_blank"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon" style="line-height:1;">
+                  <span aria-hidden="true" style="font-size:18px; display:inline-block;">🤗</span>
+                </span>
+                <span>Model Weights</span>
+              </a>
+            </span>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body"> -->
+      <!-- TODO: Replace with your teaser video -->
+      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata"> -->
+        <!-- TODO: Add your video file path here -->
+        <!-- <source src="static/videos/banner_video.mp4" type="video/mp4"> -->
+      <!-- </video> -->
+      <!-- TODO: Replace with your video description -->
+      <!-- <h2 class="subtitle has-text-centered"> -->
+        <!-- Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus.  -->
+      <!-- </h2> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </section> -->
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
+      <div class="column is-full">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+            Predicting future dynamics is crucial for applications like autonomous driving and robotics, where understanding the environment is key. Existing pixel-level methods are computationally expensive and often focus on irrelevant details. 
+To address these challenges, we introduce DINO-Foresight, a novel framework that operates in the semantic feature space of pretrained Vision Foundation Models (VFMs). Our approach trains a masked feature transformer in a self-supervised manner to predict the evolution of VFM features over time. By forecasting these features, we can apply off-the-shelf, task-specific heads for various scene understanding tasks. In this framework, VFM features are treated as a latent space, to which different heads attach to perform specific tasks for future-frame analysis. Extensive experiments show the very strong performance, robustness and scalability of our framework. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- DINO-Foresight Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+<!--       <div class="column is-four-fifths"> -->
+      <div class="column is-full">
+        <center><h2 class="title is-3">Overview</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            Our framework employs frozen Vision Foundation Model (VFM) encoders to extract semantic features from context frames. A masked feature transformer then processes these features in a self-supervised manner, predicting future VFM features by minimizing SmoothL1 loss between predicted and actual features. At test time, the forecasted features enable plug-and-play integration with task-specific prediction heads—such as semantic/instance segmentation, depth estimation, and surface normals—without retraining the core predictor, enabling modular and efficient multi-task scene understanding.
+          </p>
+        </div>
+        <!-- Image -->
+        <div class="has-text-centered">
+          <img src="static/videos/Overview.gif" alt="DINO-Foresight Overview" style="width: 100%; height: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End DINO-Foresight Section -->
+
+
+<!-- Hierarchical Target Feature Construction Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Hierarchical Target Feature Construction</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            Our framework constructs a semantically rich feature space by extracting features from multiple layers of a frozen Vision Transformer (ViT) encoder, capturing semantic information at varying levels of abstraction. Given a sequence of \(N\) image frames, we extract features \(\mathbf{F}_l \in \mathbb{R}^{N \times H' \times W' \times D_{\text{enc}}}\) from \(L\) layers of the ViT model, where \(D_{\text{enc}}\) is the feature dimension and \(H' \times W'\) is the spatial resolution. These features are concatenated along the channel dimension, resulting in \(\mathbf{F}_{\text{concat}} \in \mathbb{R}^{N \times H' \times W' \times (L \cdot D_{\text{enc}})}\). To manage the high dimensionality of the concatenated features, we apply Principal Component Analysis (PCA) for token-wise dimensionality reduction, transforming \(\mathbf{F}_{\text{concat}}\) into a lower-dimensional representation \(\mathbf{F}_{\text{PCA}} \in \mathbb{R}^{N \times H' \times W' \times D}\), where \(D \ll L \cdot D_{\text{enc}}\). These PCA-reduced features serve as the target features for our masked feature transformer, enabling efficient yet information-rich future prediction.
+          </p>
+          <p>
+            As shown in <strong>Table 1</strong>, using features from multiple layers (3, 6, 9, 12) significantly improves semantic segmentation performance compared to using only the final layer (12). Furthermore, <strong>Table 2</strong> demonstrates that PCA-based dimensionality reduction simplifies the modeling process and leads to improved performance.
+          </p>
+        </div>
+        
+        <!-- Horizontal Layout: Tables and Figure side-by-side -->
+        <div class="columns is-vcentered" style="margin-top: 2rem;">
+          <!-- Left Column: Two Table Images Stacked (50% width) -->
+          <div class="column is-half">
+            <!-- Table 1: Multi-Layer Features (smaller width) -->
+            <figure style="margin-bottom: 2rem;">
+              <div style="text-align: center;">
+                <img src="static/images/table_layers.png" alt="Multi-Layer Features Table" style="width: 70%; height: auto; display: inline-block;">
+              </div>
+              <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+                <strong>Table 1:</strong> Impact of multi-layer features on semantic segmentation performance.
+              </figcaption>
+            </figure>
+            
+            <!-- Table 2: Dimensionality Reduction (full width) -->
+            <figure>
+              <div style="text-align: center;">
+                <img src="static/images/table_dimreduction.png" alt="Dimensionality Reduction Table" style="width: 100%; height: auto;">
+              </div>
+              <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+                <strong>Table 2:</strong> Effect of PCA dimensionality reduction on segmentation and depth prediction.
+              </figcaption>
+            </figure>
+          </div>
+          
+          <!-- Right Column: Figure (50% width) -->
+          <div class="column is-half">
+            <figure>
+              <div class="has-text-centered">
+                <img src="static/images/hierarchical_construction.png" alt="Hierarchical Target Feature Construction" style="width: 100%; height: auto;">
+              </div>
+              <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+                <strong>Figure 1:</strong> Multi-layer features from a frozen ViT encoder are concatenated and compressed via PCA to form compact target features for the masked feature transformer.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hierarchical Target Feature Construction Section -->
+
+
+<!-- Comparison of VFM Encoders Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Comparison of VFM Encoders across tasks</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate our method using three different Vision Foundation Model (VFM) encoders: <strong>DINOv2 with registers</strong> (self-supervised), <strong>EVA2-CLIP</strong> (vision-language contrastive), and <strong>SAM</strong> (Segment Anything Model, supervised for instance segmentation). For each encoder, we use the ViT-B variant and assess performance across multiple scene understanding tasks. As shown in <strong>Table 3</strong>, DINOv2 consistently outperforms other encoders across all tasks, achieving the best results for both short-term and mid-term predictions. This aligns with expectations, as the DINOv2-based Oracle also performs best in all cases. Notably, our model effectively predicts future-frame features for all VFMs, significantly improving over the Copy-Last baseline in every scenario.
+          </p>
+          <p>
+            Additionally, we compare VFM features against <strong>VAE-based latents</strong> used in latent generative models. The results clearly demonstrate that VAE latents lack the high-level semantic information necessary for accurate scene understanding tasks. Even the Oracle performance with VAE latents is significantly worse than with VFM features, highlighting the fundamental advantage of forecasting semantically rich VFM features over low-level VAE representations. Based on these findings, we select DINOv2 as our default VFM encoder due to its superior performance across all evaluation metrics.
+          </p>
+        </div>
+        
+        <!-- Table: VFM Encoder Comparison -->
+        <div style="margin-top: 2rem;">
+          <figure>
+            <div class="has-text-centered">
+              <img src="static/images/table_encoders.png" alt="Comparison of VFM Encoders" style="width: 100%; height: auto;">
+            </div>
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+              <strong>Table 3:</strong> Comparison of VFM encoders (DINOv2, EVA2-CLIP, SAM) and VAE latents across semantic segmentation, depth estimation, and surface normal prediction. For each method, we show Oracle (upper bound), Copy-Last (lower bound), and our Prediction results. DINOv2 consistently achieves the best performance across all tasks and temporal horizons.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Comparison of VFM Encoders Section -->
+
+<!-- Training-Efficient Strategies for High-Resolution Feature Forecasting Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Training-Efficient Strategies for High-Resolution Feature Forecasting</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            High-resolution features are crucial for pixel-wise scene understanding tasks, but training on high-resolution inputs (\(448 \times 896\)) is computationally expensive. To address this challenge, we explore three strategies as shown in <strong>Table 4</strong>: position interpolation (training on \(224 \times 448\) and adapting at test time), sliding-window processing (training on cropped features), and two-phase training (low-resolution pretraining followed by high-resolution fine-tuning). Comparing Oracle baselines at different resolutions (rows a-b) demonstrates that high-resolution features significantly improve segmentation performance. Among forecasting approaches, position interpolation (row d) performs poorly due to distribution shift, while both sliding-window (row e) and two-phase training (row f) achieve strong results. We adopt the two-phase approach as our default strategy due to its simplicity and superior performance, enabling the masked transformer to leverage larger spatial context when propagating VFM features.
+          </p>
+        </div>
+        
+        <!-- Table: High-Resolution Training Strategies -->
+        <div style="margin-top: 1.5rem;">
+          <figure>
+            <div class="has-text-centered">
+              <img src="static/images/table_highres.png" alt="High-Resolution Training Strategies Comparison" style="width: 70%; height: auto;">
+            </div>
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+              <strong>Table 4:</strong> Comparison of training strategies for high-resolution feature forecasting. Two-phase training (row f) achieves the best balance between computational efficiency and prediction accuracy.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Training-Efficient Strategies Section -->
+
+<!-- Discrete vs. Continuous VFM Representations Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Discrete vs. Continuous VFM Representations</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            Recent work in generative modeling has explored both discrete and continuous representations for image and video generation. While recent findings favor continuous representations, showing that removing vector quantization can improve generation quality, we investigate this question in the context of VFM feature forecasting. To compare these approaches, we employ 4M's pretrained DINOv2 tokenizer, which encodes DINOv2 features into discrete codes from a vocabulary of size 8192. We train a quantized variant of DINO-Foresight using cross-entropy loss to predict these discrete codes, which are then decoded back to DINOv2 features at inference time. As shown in <strong>Table 5</strong>, while the discretized variant achieves comparable Oracle performance to the continuous case, our continuous VFM feature forecasting approach yields superior future semantic prediction results across both short-term and mid-term horizons. These findings suggest that preserving the rich, continuous representations from VFMs—without quantization—offers clear advantages for dense semantic forecasting tasks.
+          </p>
+        </div>
+        
+        <!-- Table: Discrete vs Continuous Comparison -->
+        <div style="margin-top: 1.5rem;">
+          <figure>
+            <div class="has-text-centered">
+              <img src="static/images/table_disccont.png" alt="Discrete vs Continuous VFM Representations Comparison" style="width: 70%; height: auto;">
+            </div>
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+              <strong>Table 5:</strong> Comparison of continuous DINOv2 features (our approach) against 4M's DINOv2 tokenizer with discrete codes on semantic segmentation forecasting. Continuous representations consistently outperform discrete tokenization.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Discrete vs. Continuous Section -->
+
+<!-- Comparison with State-of-the-Art Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Comparison with State-of-the-Art</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            DINO-Foresight demonstrates a key advantage over existing methods: a single feature prediction model achieves competitive or superior performance across multiple scene understanding tasks. As shown in <strong>Table 6</strong>, our approach handles semantic segmentation, instance segmentation, depth estimation, and surface normal prediction simultaneously, while prior works either require separate prediction models per task (e.g., PFA) or handle at most two tasks (e.g., Futurist). We compare against VISTA, a large-scale video latent diffusion model with 2.5 billion parameters trained on 1,740 hours of driving videos. Despite VISTA's substantially larger scale, DINO-Foresight consistently outperforms it across all tasks on both Cityscapes and nuScenes datasets. Moreover, our approach is significantly more efficient—mid-term forecasting on 500 Cityscapes validation scenes takes approximately 5 minutes versus VISTA's 8.3 hours (both on a single A100 GPU). These results validate that operating in semantically rich VFM feature space provides clear advantages over RGB-level generation for scene understanding tasks, enabling accurate predictions while remaining computationally efficient.
+          </p>
+        </div>
+        
+        <!-- Table: State-of-the-Art Comparison -->
+        <div style="margin-top: 1.5rem;">
+          <figure>
+            <div class="has-text-centered">
+              <img src="static/images/table_methods.png" alt="Comparison with State-of-the-Art Methods" style="width: 100%; height: auto;">
+            </div>
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+              <strong>Table 6:</strong> Comprehensive comparison with state-of-the-art methods across semantic segmentation, instance segmentation, depth prediction, and surface normal forecasting on Cityscapes. DINO-Foresight achieves strong performance across all tasks with a single unified model, while previous methods require separate models per task or handle limited task combinations.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Comparison with State-of-the-Art Section -->
+
+<!-- Emerging Visual Representations Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <center><h2 class="title is-3">Emerging Visual Representations in the Masked Feature Transformer</h2></center>
+        <div class="content has-text-justified">
+          <p>
+            Beyond forecasting VFM features, we investigate whether intermediate representations within our masked feature transformer can serve as enhanced visual features for downstream tasks. Inspired by self-supervised learning methods that extract robust features from unlabeled data, we examine features from the 6th, 9th, 10th, 11th, and 12th transformer layers to assess whether these intermediate representations can further improve upon the already strong predicted VFM features. As shown in <strong>Figure 2</strong>, incorporating intermediate transformer features enhances both semantic segmentation and depth prediction performance across most layers, with the 9th layer features yielding the best segmentation results and 6th layer features achieving optimal depth performance. While improvements are modest—as expected given the strength of predicted VFM features alone—these findings suggest that our future prediction framework holds promise as a self-supervised representation learning method. The masked transformer learns meaningful visual representations through temporal prediction, potentially enhancing the pretrained VFM features and opening new directions for self-supervised learning through future forecasting.
+          </p>
+        </div>
+        
+        <!-- Figure: Intermediate Features Impact -->
+        <div style="margin-top: 1.5rem;">
+          <figure>
+            <div class="has-text-centered">
+              <img src="static/images/table_sslfeats.png" alt="Impact of Intermediate Transformer Features" style="width: 100%; height: auto;">
+            </div>
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem;">
+              <strong>Figure 2:</strong> Performance comparison using only predicted VFM features (dashed line) versus combining them with intermediate transformer features from layers 6, 9, 10, 11, and 12 (blue bars). Results demonstrate that intermediate features improve both semantic segmentation (mIoU) and depth prediction (AbsRel reduction) across short-term and mid-term horizons.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Emerging Visual Representations Section -->
+
+
+
+
+
+
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+      <center><h2 class="title">Citation</h2></center>
+      <div style="position: relative; background-color: #f5f5f5; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+          <button onclick="copyToClipboard()" 
+                  style="position: absolute; right: 10px; top: 10px; background-color: #007bff; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;"
+                  onmouseover="this.style.backgroundColor='#0056b3'" 
+                  onmouseout="this.style.backgroundColor='#007bff'">
+              Copy
+          </button>
+          <pre style="margin: 0; padding-right: 100px; overflow-x: auto;">
+            <code id="code-snippet">
+@inproceedings{karypidis2025dinoforesight,
+title={{DINO}-Foresight: Looking into the Future with {DINO}},
+author={Efstathios Karypidis and Ioannis Kakogeorgiou and Spyros Gidaris and Nikos Komodakis},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=gimtybo07H}
+}
+            </code></pre>
+      </div>  
+  </div>
+  <script>
+      function copyToClipboard() {
+          var code = document.getElementById("code-snippet").innerText;
+          navigator.clipboard.writeText(code).then(function() {
+              alert('Citation copied to clipboard!');
+          }, function(err) {
+              alert('Failed to copy citation: ', err);
+          });
+      }
+  </script>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
